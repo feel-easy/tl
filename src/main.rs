@@ -17,6 +17,10 @@ struct YoudaoResp {
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let args = Args::parse();
+    if args.text.is_empty() {
+        println!("请提供要翻译的文本，例如: tl hello world");
+        return Ok(());
+    }
     let text = args.text.join(" ");
     let url = format!(
         "https://aidemo.youdao.com/trans?from=auto&to=auto&q={}",
